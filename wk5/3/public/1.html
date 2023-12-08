@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = () => {
+      const btn0 = document.getElementById('btn0')
+      const content = document.getElementById('content')
+      btn0.addEventListener('click', async (evt) => {
+        // console.log('i have been clicked')
+        try {
+          const response = await fetch('http://localhost:8080/students')
+          const data = await response.json()
+          content.innerHTML = data.map(e => `<div>I am ${e.name} and have id ${e.id}</div>`).join('')
+        } catch (error) {
+          console.log(error)
+        }
+      })
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="Load all" id="btn0" />
+  <div id="content"></div>
+</body>
+</html>

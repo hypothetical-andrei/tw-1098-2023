@@ -2,6 +2,13 @@ import express from 'express'
 
 const app = express()
 
+app.use((req, res, next) => {
+  console.log(req.url)
+  next()
+})
+
+app.use(express.static('public'))
+
 app.locals.students = [{
   id: 1,
   name: 'jim'
